@@ -25,21 +25,23 @@ RUN bash -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ bullseye-pgdg ma
     (wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -) && \
     apt-get update && \
     apt-get install -y --no-install-recommends \
-        cron \
-        gcc \
-        libpq-dev \
-        libpython3-dev \
-        openssh-client \
-        postgresql-client-11 \
-        postgresql-client-12 \
-        postgresql-client-13 \
-        postgresql-client-14 \
-        postgresql-client-15 \
-        python3 \
-        python3-distutils \
-        rsync \
-        gettext-base \
-        procps && \
+    cron \
+    gcc \
+    libpq-dev \
+    libpython3-dev \
+    openssh-client \
+    postgresql-client-11 \
+    postgresql-client-12 \
+    postgresql-client-13 \
+    postgresql-client-14 \
+    postgresql-client-15 \
+    postgresql-client-16 \
+    postgresql-client-17 \
+    python3 \
+    python3-distutils \
+    rsync \
+    gettext-base \
+    procps && \
     rm -rf /var/lib/apt/lists/* && \
     rm -f /etc/crontab /etc/cron.*/* && \
     sed -i 's/\(.*pam_loginuid.so\)/#\1/' /etc/pam.d/cron && \
