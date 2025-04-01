@@ -10,7 +10,7 @@ echo "${BARMAN_CRON_SCHEDULE} barman /usr/local/bin/barman receive-wal --create-
 echo "${BARMAN_BACKUP_SCHEDULE} barman /usr/local/bin/barman backup all" >>/etc/cron.d/barman
 
 echo "Generating Barman configurations"
-if [ ! -f /tmp/foo.txt ]; then
+if [ ! -f /etc/barman.conf ]; then
     cat /etc/barman.conf.template | envsubst >/etc/barman.conf;
 fi
 cat /etc/barman/barman.d/pg.conf.template | envsubst >/etc/barman/barman.d/pg.conf
