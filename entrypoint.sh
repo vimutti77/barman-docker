@@ -10,7 +10,9 @@ echo "${BARMAN_CRON_SCHEDULE} barman /usr/local/bin/barman receive-wal --create-
 echo "${BARMAN_BACKUP_SCHEDULE} barman /usr/local/bin/barman backup all" >>/etc/cron.d/barman
 
 echo "Generating Barman configurations"
-cat /etc/barman.conf.template | envsubst >/etc/barman.conf
+if [ ! -f /tmp/foo.txt ]; then
+    cat /etc/barman.conf.template | envsubst >/etc/barman.conf;
+fi
 cat /etc/barman/barman.d/pg.conf.template | envsubst >/etc/barman/barman.d/pg.conf
 echo "${DB_HOST}:${DB_PORT}:*:${DB_SUPERUSER}:${DB_SUPERUSER_PASSWORD}" >/home/barman/.pgpass
 echo "${DB_HOST}:${DB_PORT}:*:${DB_REPLICATION_USER}:${DB_REPLICATION_PASSWORD}" >>/home/barman/.pgpass
