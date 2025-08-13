@@ -60,6 +60,7 @@ ENV \
     DB_SUPERUSER_DATABASE=postgres \
     DB_REPLICATION_USER=standby \
     DB_REPLICATION_PASSWORD=standby \
+    DB_REPLICATION_DATABASE=postgres \
     DB_SLOT_NAME=barman \
     DB_BACKUP_METHOD=postgres \
     BARMAN_EXPORTER_SCHEDULE="*/5 * * * *" \
