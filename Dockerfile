@@ -32,6 +32,7 @@ RUN bash -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ bullseye-pgdg ma
     openssh-client \
     postgresql-client-16 \
     postgresql-client-17 \
+    postgresql-client-18 \
     python3 \
     python3-distutils \
     rsync \
