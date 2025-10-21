@@ -3,16 +3,21 @@
 echo "Setting ownership/permissions on ${BARMAN_DATA_DIR} and ${BARMAN_LOG_DIR}"
 
 install -d -m 0700 -o barman -g barman ${BARMAN_DATA_DIR}
+
+# Ensure Barman log file is writable
 install -d -m 0755 -o barman -g barman ${BARMAN_LOG_DIR}
+touch ${BARMAN_LOG_DIR}/barman.log
+chown barman:barman ${BARMAN_LOG_DIR}/barman.log
+chmod 644 ${BARMAN_LOG_DIR}/barman.log
 
 echo "Generating cron schedules"
-cat <<EOF >> /etc/cron.d/barman
-SHELL=/bin/bash
-PATH=/usr/local/bin:/usr/bin:/bin
-
-${BARMAN_CRON_SCHEDULE} barman /usr/local/bin/barman receive-wal --create-slot pg && /usr/local/bin/barman cron
-${BARMAN_BACKUP_SCHEDULE} barman /usr/local/bin/barman backup all
-EOF
+echo "BARMAN_CRON_SCHEDULE=$BARMAN_CRON_SCHEDULE"
+echo "BARMAN_BACKUP_SCHEDULE=$BARMAN_BACKUP_SCHEDULE"
+echo "SHELL=/bin/bash" > /etc/cron.d/barman
+echo "PATH=/usr/local/bin:/usr/bin:/bin" >> /etc/cron.d/barman
+echo "${BARMAN_CRON_SCHEDULE} barman barman receive-wal --create-slot pg ; barman cron" >> /etc/cron.d/barman
+echo "${BARMAN_BACKUP_SCHEDULE} barman barman backup all" >> /etc/cron.d/barman
+echo "" >> /etc/cron.d/barman
 
 echo "Generating Barman configurations"
 if [ ! -f /etc/barman.conf ]; then
