@@ -15,7 +15,7 @@ echo "BARMAN_CRON_SCHEDULE=$BARMAN_CRON_SCHEDULE"
 echo "BARMAN_BACKUP_SCHEDULE=$BARMAN_BACKUP_SCHEDULE"
 echo "SHELL=/bin/bash" > /etc/cron.d/barman
 echo "PATH=/usr/local/bin:/usr/bin:/bin" >> /etc/cron.d/barman
-echo "${BARMAN_CRON_SCHEDULE} barman barman receive-wal --create-slot pg ; barman cron" >> /etc/cron.d/barman
+echo "${BARMAN_CRON_SCHEDULE} barman barman receive-wal pg; barman cron" >> /etc/cron.d/barman
 echo "${BARMAN_BACKUP_SCHEDULE} barman barman backup all" >> /etc/cron.d/barman
 echo "" >> /etc/cron.d/barman
 

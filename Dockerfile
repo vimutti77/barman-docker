@@ -52,7 +52,7 @@ ENV \
     BARMAN_LOG_DIR=/var/log/barman \
     BARMAN_SSH_KEY_DIR=/private/ssh \
     BARMAN_CRON_SCHEDULE="* * * * *" \
-    BARMAN_BACKUP_SCHEDULE="0 4 * * *" \
+    BARMAN_BACKUP_SCHEDULE="0 0 * * 1" \
     BARMAN_LOG_LEVEL=INFO \
     DB_HOST=pg \
     DB_PORT=5432 \
